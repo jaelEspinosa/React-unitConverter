@@ -6,6 +6,7 @@ import CmToInches from "./components/CmToInches";
 import InchesToCm from "./components/InchesToCm";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedValue } from "./store/slices/convert";
+import FavoritesCard from "./components/favoritesCard";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,13 +76,13 @@ function App() {
         </div>
           {renderComponent()}
 
-          <div className="favorites-section">
-            <a onClick={()=>console.log('añadir a favoritos')}>
-              <i className="fa-regular fa-heart"></i>
-            </a>
-          </div>
 
         </div>
+        <h2 className="title-favorites">Saved</h2>
+        <div className="favorites-card">
+        <FavoritesCard />
+        </div>
+
       </main>
     </>
   );

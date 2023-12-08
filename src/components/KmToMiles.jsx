@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { kmToMillas, setKm } from "../store/slices/convert";
+import Favorites from "./Favorites";
 
 const KmToMiles = () => {
   const dispatch = useDispatch();
@@ -22,13 +23,22 @@ const KmToMiles = () => {
     return formattedMiles;
   };
 
+  const formatKm = () => {
+    // Verifica si los decimales son iguales a cero
+    const formattedMiles =
+      parseFloat(km) === parseInt(km) ? parseInt(km) : km.toFixed(2);
+    return formattedMiles;
+  };
+
   return (
     <div className="input-section">
       <div className="input-group">
         <input
+          id="cantidad"
+          name = 'cantidad'
           className="input"
           type="number"
-          value={km === 0 ? "" : km}
+          value={km === 0 ? "" : formatKm()}
           onChange={hadleInputChange}
         />
         <span>Km</span>
@@ -37,6 +47,7 @@ const KmToMiles = () => {
         <h2>{formatMiles()} </h2>
         <span>miles</span>
       </div>
+      <Favorites favorite={`${formatKm()} km -> ${formatMiles()} miles`}/>
     </div>
   );
 };

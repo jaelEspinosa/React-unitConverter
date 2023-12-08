@@ -1,20 +1,10 @@
-/* *{
-  border:1px solid pink;
-} */
+
 
 body{
   margin:0;
   padding:0;
   font-family: 'Poppins', sans-serif;
 }
-
-/* .card {
-  padding: 2em;
-}
-.card button{
-  
-  margin: 10px;
-} */
 
 .read-the-docs {
   color: #888;
@@ -57,6 +47,7 @@ body{
 main {
   
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 99.9vw;
   height: calc(100vh - 70px);
@@ -68,7 +59,8 @@ main {
 .converter{
   position: relative;
   margin: auto;
-  margin-top: 99px;
+  margin-bottom: 100px;
+  margin-top: 0px;
   background-color: #2E0039;
   border-radius: 21px;
   color: white;
@@ -103,7 +95,6 @@ main {
 .select-section {
   height: 209px;
   margin-left: 20px;
-  /* border:1px solid green; */
   width: 50%;
   min-width: none;
   display: flex;
@@ -117,7 +108,6 @@ main {
 }
 
 .input-section {
-  /* border: 1px solid red; */
   margin-right: 50px;
   height: 209px;
   width: 50%;
@@ -152,6 +142,36 @@ main {
   left: 25px;
 }
 
+/**********  Favorites Card  ********/
+
+.favorites-card{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.item-card{
+  background-color: #E3E3E3;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  color:#676767;
+}
+.item-card span{
+  font-weight: 400;
+  font-size: 14px;
+}
+.title-favorites{
+  margin-left: 60px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #676767;
+}
 
 /* Estilo para ocultar las flechas del control number */
 input[type="number"]::-webkit-inner-spin-button,
@@ -176,6 +196,7 @@ input[type="number"] {
     flex-direction: column;
     align-items: start;
     justify-content: center;
+    margin-bottom: 30px;
   }
   .input-section{
     width: 95%; 
@@ -196,5 +217,8 @@ input[type="number"] {
   }
   .result{
     width: 90%;
+  }
+  .item-card{
+    width: 300px;
   }
 }

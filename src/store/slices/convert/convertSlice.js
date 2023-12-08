@@ -11,7 +11,8 @@ export const convertSlice = createSlice({
        km: 0,
        miles: 0,
        cm: 0,
-       selectedValue: ''
+       selectedValue: '',
+       favorites:[]
   },
   reducers: {
  
@@ -61,6 +62,25 @@ export const convertSlice = createSlice({
 
    setSelectedValue: (state,action) => {
     state.selectedValue = action.payload
+   },
+
+   addToFavorites: ( state, action ) => {
+    
+     state.favorites.push(action.payload);
+        
+    },
+
+  /*  deleteFavorites: ( state, action ) => {
+    // todo filtrar el array
+   } */
+   
+   resetUnits:  (state ) => {
+    state.inches= 0;
+    state.feet= 0;
+    state.meters=0;
+    state.km= 0;
+    state.miles= 0;
+    state.cm= 0;
    }
 
 }
@@ -83,5 +103,8 @@ export const {
                 inchToCm,
                 feetToMeters,
                 cmToInch,
+                addToFavorites,
+                deleteFavorites,
+                resetUnits,
 
               } = convertSlice.actions
