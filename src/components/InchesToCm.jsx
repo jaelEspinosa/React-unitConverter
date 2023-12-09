@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { inchToCm, setInch } from "../store/slices/convert";
+import Favorites from "./Favorites";
+import { formatUnit } from "../helpers";
 
 
 const InchesToCm = () => {
@@ -9,30 +11,43 @@ const InchesToCm = () => {
   const dispatch = useDispatch();
   const { inches, cm } = useSelector(state => state.convert);
 
-  const formatCm = () => {
-    // Verifica si los decimales son iguales a cero
-    const formattedInches = parseFloat(cm) === parseInt(cm) ? parseInt(cm) : cm.toFixed(2);
-    return formattedInches;
-  };
+  
 
   const hadleInputChange = (e) =>{
-    const newNumber = e.target.value;
-   
+
+    const newNumber = e.target.value;   
     dispatch ( setInch(newNumber))
     dispatch ( inchToCm(newNumber))
   }
 
 
   return (
-    <div>
-    <h2>Inches to Cm </h2>
-   Inches <input type="number" value={inches === 0 ? '' : inches} onChange={hadleInputChange} placeholder="Cm."/>  
-   <div>
-      <h2 className="result">{formatCm()} <span>Cm.</span></h2>
-    </div>
+    <div className="input-section">
+      <div className="input-group">
+        <input
+          id="cantidad"
+          name="cantidad"
+          className="input"
+          type="number"
+          value={inches === 0 ? "" : formatUnit(inches)}
+          onChange={hadleInputChange}
+        />
+        <span>inches</span>
+      </div>
 
-    </div>
+      <div className="result">
+        <h2>{formatUnit(cm)} </h2>
+        <span>cm</span>
+      </div>
+      { cm > 0 && <Favorites favorite={`${formatUnit(inches)} inches     →     ${formatUnit(cm)} cm`}/>}
+      { cm === 0 && <Favorites />}
+
+    </div> 
+    
   )
 }
 
 export default InchesToCm
+
+
+

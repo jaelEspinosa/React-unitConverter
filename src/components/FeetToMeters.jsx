@@ -1,38 +1,43 @@
 import { useDispatch, useSelector } from "react-redux";
 import { feetToMeters, setFeet } from "../store/slices/convert";
+import Favorites from "./Favorites";
+import { formatUnit } from "../helpers";
 
 
 
 
-const FeetToMeters = () => {
-  
+const FeetToMeters = () => {  
   const dispatch = useDispatch();
   const { meters, feet } = useSelector(state => state.convert);
 
-  const formatMeters = () => {
-    // Verifica si los decimales son iguales a cero
-    const formattedMiles = parseFloat(meters) === parseInt(meters) ? parseInt(meters) : meters.toFixed(2);
-    return formattedMiles;
-  };
-
   const hadleInputChange = (e) =>{
-    const newNumber = e.target.value;
-   
-    dispatch ( setFeet(newNumber))
-    dispatch ( feetToMeters(newNumber))
+    const newNumber = e.target.value;     
+    dispatch ( setFeet(newNumber));
+    dispatch ( feetToMeters(newNumber));
   }
   
-
-
   return (
-    <div>
-    <h2>Feet to Meters </h2>
-   Feet-- <input type="number" value={feet === 0 ? '' : feet} onChange={hadleInputChange} placeholder="Met."/>  
-   <div>
-      <h2 className="result">{formatMeters()} <span>Meters</span></h2>
-    </div>
+    <div className="input-section">
+      <div className="input-group">
+        <input
+          id="cantidad"
+          name="cantidad"
+          className="input"
+          type="number"
+          value={feet === 0 ? "" : formatUnit(feet)}
+          onChange={hadleInputChange}
+        />
+        <span>feet</span>
+      </div>
 
-    </div>
+      <div className="result">
+        <h2>{formatUnit(meters)} </h2>
+        <span>meters</span>
+      </div>
+      { meters > 0 && <Favorites favorite={`${formatUnit(feet)} feet     →     ${formatUnit(meters)} meters`}/>}
+      { meters === 0 && <Favorites />}
+
+    </div>    
   )
 }
 

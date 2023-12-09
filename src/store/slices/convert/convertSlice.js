@@ -75,6 +75,11 @@ export const convertSlice = createSlice({
     state.favorites = newFavorites;
     localStorage.setItem('favorites', JSON.stringify(state.favorites))
    },
+
+   setLocalStorageFav: ( state, action ) => {
+    const favorites = action.payload
+    favorites.forEach(fav => state.favorites.push(fav));
+   },
    
    resetUnits:  (state ) => {
     state.inches= 0;
@@ -92,21 +97,22 @@ export const convertSlice = createSlice({
 
 
 export const {  
-                setSelectedValue,
-                setMiles, 
-                setMeters,
-                setKm, 
-                setInch,
-                setFeet,
-                setCm,
-                millasToKm, 
-                metersToFeet, 
-                kmToMillas, 
-                inchToCm,
-                feetToMeters,
-                cmToInch,
                 addToFavorites,
+                cmToInch,
                 deleteFavorites,
+                feetToMeters,
+                inchToCm,
+                kmToMillas, 
+                metersToFeet, 
+                millasToKm, 
                 resetUnits,
+                setCm,
+                setFeet,
+                setInch,
+                setKm, 
+                setLocalStorageFav,
+                setMeters,
+                setMiles, 
+                setSelectedValue,
 
               } = convertSlice.actions
