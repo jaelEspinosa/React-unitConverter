@@ -78,12 +78,21 @@ function App() {
 
 
         </div>
-        <h2 className="title-favorites">Saved</h2>
-        <div className="favorites-card">
-        <FavoritesCard />
+        <div className="title-container">
+          <h2 className="title-favorites">Saved</h2>
+        </div>
+
+        <div className="favorites-container">
+          <div className="favorites-card">
+             <FavoritesCard />
+          </div>
         </div>
 
       </main>
+      <footer className="footer">
+        <span>Terms of service</span>
+        <span>Privacy policy</span>
+      </footer>
     </>
   );
 }

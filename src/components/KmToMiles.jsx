@@ -47,7 +47,8 @@ const KmToMiles = () => {
         <h2>{formatMiles()} </h2>
         <span>miles</span>
       </div>
-      <Favorites favorite={`${formatKm()} km -> ${formatMiles()} miles`}/>
+      { km > 0 && <Favorites favorite={`${formatKm()} km -> ${formatMiles()} miles`}/>}
+      { km === 0 && <Favorites />}
     </div>
   );
 };

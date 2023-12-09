@@ -1,9 +1,14 @@
-import {  useSelector } from "react-redux"
+import {  useDispatch, useSelector } from "react-redux"
+import { deleteFavorites } from "../store/slices/convert";
 
 
 const FavoritesCard = () => {
+const dispatch = useDispatch();
 
 
+const handleDelete = (fav)=> {
+ dispatch( deleteFavorites(fav))
+}
 const { favorites } = useSelector((state) => state.convert);
 
   return (
@@ -12,7 +17,7 @@ const { favorites } = useSelector((state) => state.convert);
       {favorites.map((fav, index) => (
         <div  className = 'item-card' key = {index}>
             <span>{fav}</span>
-            <span> x </span>
+            <i className="fa-regular fa-x" onClick={()=>handleDelete(fav)}></i>
             
         </div>
       ))}

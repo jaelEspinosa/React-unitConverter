@@ -64,15 +64,17 @@ export const convertSlice = createSlice({
     state.selectedValue = action.payload
    },
 
-   addToFavorites: ( state, action ) => {
-    
+   addToFavorites: ( state, action ) => {    
      state.favorites.push(action.payload);
-        
+     localStorage.setItem('favorites', JSON.stringify(state.favorites))
+     
     },
 
-  /*  deleteFavorites: ( state, action ) => {
-    // todo filtrar el array
-   } */
+   deleteFavorites: ( state, action ) => {
+    const newFavorites = state.favorites.filter(fav => fav !== action.payload);
+    state.favorites = newFavorites;
+    localStorage.setItem('favorites', JSON.stringify(state.favorites))
+   },
    
    resetUnits:  (state ) => {
     state.inches= 0;

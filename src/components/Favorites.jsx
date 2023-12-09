@@ -10,11 +10,11 @@ import { addToFavorites, resetUnits } from "../store/slices/convert";
 const Favorites = ({favorite}) => {
     
     const dispatch = useDispatch();
-    /* const { favorites } = useSelector((state) => state.convert); */
+  
 
 
 const handleFavorite = () =>{
-    console.log(typeof favorite, ' los favoritos son', favorite)
+    if(!favorite) return;
     dispatch( addToFavorites(favorite));
     dispatch( resetUnits())
     
@@ -25,7 +25,7 @@ const handleFavorite = () =>{
             <a onClick={()=> handleFavorite()}>
               <i className="fa-regular fa-heart"></i>
             </a>
-          </div>
+    </div>
   )
 }
 
